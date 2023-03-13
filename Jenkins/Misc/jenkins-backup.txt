@@ -1,0 +1,3 @@
+mangae plugins --> periodoc backup(plugin)
+create directory in server to take backup (ex - mkdir /opt/jenkins-backup) and make jenkins as owner
+After creating dir in jenkins server, go to manage jenkins --> backup manager an d configure it

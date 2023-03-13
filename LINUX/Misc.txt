@@ -1,0 +1,11 @@
+To check no of cpus:
+----
+# lscpu | grep CPU
+
+To check RAM:
+----
+#dmidecode --type 17 
+ dmidecode --type 17 | less 
+ dmidecode --type 17 | grep  Size:.*MB
+
+To install rpm in linux , command is -->  # rpm -ivh ****.rpm

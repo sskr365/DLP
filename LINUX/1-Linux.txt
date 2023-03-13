@@ -1,0 +1,19 @@
+H/w understands only binaries
+Types of os --> 1) single user multi-tasking 2)multi-user multi tasking (ex: many users can be created in linux)
+#users --> this command shows all logged in users
+In linux everything is file, configuration data is stored in text for easy movement and roll back , ability to chain program together to perform complex task (exm: cat /etc/passwd | grep ramu, which hlps in craeting scripts))
+
+Linux Architecture:
+------------------
+hardware --> kernel(device interface, multi-tasking, device interface), shell(csh, sh, ksh), utilities(top, ls, cat, cd..)
+#dmidecode (shows all info about h/w & resources)
+#cat /proc/cpuinfo,meminfo
+kernel manages resources, schedule tasks(crontab),control security(selinux)
+#df -h ( detail info on file system)
+shell --> on top this only executing commands, means interpreting user commands and gives result
+#echo $SHELL (gives cureent shell) 
+# cd /bin --> here all commands scripts are present exm: pwd, ls, cat all are in binary format
+#uname -r (shows kernel version)
+
+File System Hierarchy:
+-----------------

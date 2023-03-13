@@ -1,0 +1,16 @@
+IntelliJ ide:
+---------------
+alt + 1 --> to open & close project tab
+
+
+GITHUB link for solutions of execersise:
+https://github.com/NeutrinoSys/java-foundations-solutions.git
+
+jshell is used for quick testing or execution of code without ide or fully project setup
+To launch jshell console, just use command " jshell " in command prompt
+jshell env is called repl(read eval print loop)
+In java methods are functions inside a class
+object is blueprint of a class
+
+
+

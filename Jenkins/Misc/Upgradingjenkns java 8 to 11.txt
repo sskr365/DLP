@@ -1,0 +1,25 @@
+To check java version uisng jenkins --> manage jenkins --> system info
+
+Jenkins java upgradation document link:
+https://gist.github.com/darinpope/2c227462b1bc2f8179d36400870a174b
+
+There is plugin --> version node monitor, after installation there is build executor status here you will jvm version of both master & agent
+
+To disconnect master from agent if version is different then go to dashboard --> nodes --> node monitoring --> selct jvm version and selct discoonect if version mismatch
+
+After upgrading jdk in agent to same as master go to build execxutor status --> click on slave --> disconnst and again join online
+
+
+JDK configurations for jenkins:
+----------------------------
+To change jdk versio of jenkins --> go to jenkins servers --> jenkins home folder --> in .bashrc file add " JAVA_HOME=/path/to/java (till bin , not bin)
+
+Jenkins backup:
+----------------
+mangae plugins --> periodoc backup(plugin)
+create directory in server to take backup (ex - mkdir /opt/jenkins-backup) and make jenkins as owner
+After creating dir in jenkins server, go to manage jenkins --> backup manager and configure it
+
+
+
+

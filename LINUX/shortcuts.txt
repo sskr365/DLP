@@ -1,0 +1,5 @@
+cntr+r --> reverse searching
+cntrl+s --> forward searching
+cntr+a --> start of line
+cntl+e --> end of line
+

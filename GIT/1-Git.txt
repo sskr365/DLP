@@ -1,0 +1,55 @@
+GIthub account - sskr365@gmail.com
+Password - D**o*s@0**9
+
+AWS account - sskrdevops23@gmail.com
+password - D**o*s@0**9
+
+Git is version control system and it will even capture smmall chnages in files in any folder of git repo
+Git has its own file structure, every file has unique hash value
+Git internally mainly works on hash values like key-value pair
+Git is local and no internrt is required, github is hosting repo, internet is required and github is mainly for distibuted teams working on same project, website can be hosted on github
+
+Initialize new git repo:
+-------------------
+# git init  --> it will create .git folder and treats that folder as empty
+under .git we have following --> branches  config  description  HEAD  hooks  info  objects  refs
+In git we have different type of objects, called git objects types:
+BLOB  --> file
+TREE --> folder
+COMMIT --> 
+Annonated Tags -->
+
+git low level commands:(how hashes will craete, objets & to check hash objects)
+------------------
+git hashobject
+----------
+  # echo "hello subscribers" | git hash-object --stdin
+     it will create hash value and no where stored
+  # echo "hello subscribers" | git hash-object --stdin -w
+     it will create hash value and will be stored as folder with first 2 letters of hash value.
+  hash value = foldername + filename
+  hash value will be stored only under .git and in objects folder not anywhere else
+  from content of file we can create hash value but reverse not possible, hash value is same everywhere, hash in market -->md5, 128bit, 
+  sha1(git), sha256, sha512
+git cat-file(by using this command we can reverse hash value)
+   git cat-file -p 5205b8060391d69e9a85330dbf92eec7048ec4f9  --> to see content
+   git cat-file -s 5205b8060391d69e9a85330dbf92eec7048ec4f9  --> to check size
+   git cat-file -t 5205b8060391d69e9a85330dbf92eec7048ec4f9  --> to check type(blob or tree)
+   git hash-object test.txt -w  --> it will create hash folder and even if we remove original test.txt file hash will be present because git has its own file structure.
+   
+no filenames will be stored in blob only content will be stored
+   
+to check files present in in obects folder of .git 
+    find /path/to/objects. -type f
+	
+IN git alsowe have file permissions like linux called object permissions
+	ex: for dir --> 040000 and for file like nonexecutable --> 100644, for executable fire --> 100755
+   
+To create tree :
+-------------
+creating tree of a file which conatins bolbs
+  ex: open file tree.txt and add alreday created bolbs in to it with permissions type of file and file names
+      100644 blob ecf849c605d130dd4778ae05404863a7f367f940 file1.txt
+	  100644 blob 5205b8060391d69e9a85330dbf92eec7048ec4f9 file2.txt
+      100755 blob 06fefe3077c1b5e9d8866ee707a120ec00e3f5a8 file3.txt
+if you to see the tree " git cat-file tree.txt"
