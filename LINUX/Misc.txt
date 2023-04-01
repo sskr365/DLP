@@ -9,3 +9,40 @@ To check RAM:
  dmidecode --type 17 | grep  Size:.*MB
 
 To install rpm in linux , command is -->  # rpm -ivh ****.rpm
+
+BCKUP of files using function under any user .bashrc
+--------------------------------------------------------
+backup_file() {
+    if [ -f "$1" ]; then
+        backup_filename="$1.$(date +%Y-%m-%d_%H:%M:%S)"
+        cp "$1" "$backup_filename"
+        echo "Backup created: $backup_filename"
+    else
+        echo "File not found: $1"
+    fi
+}
+
+====================================================================
+To copy folders/files between servers whic are in different jump server regions:
+
+scp -o "ProxyJump hegder@16.231.22.192" 20115-stg.tar.gz hegderaj@d2l00220g.dc02.its.hpecorp.net:/opt/cloudhost/liferay-tomcat/Data_Folder/document_library
+==========================================================================
+How to Search Text in Multiple Files in Linux
+
+grep -irwn 'searched-word' '/directory'  --> i casesensitive,r recursive,w whole word only,n line number
+grep -ir 'word1|word2|word3' '/directory' --> multiple word search
+=================================================================
+How to Delete Files Older than 30 days in Linux 
+
+find /var/log -name "*.log" -type f -mtime +30 --> to list specific files which are  30 days older
+find /var/log -name "*.log" -type f -mtime +30 -delete --> to delete specific type of files which are 30                                                           days older
+Delete Old Directory Recursively
+
+find /var/log -type d -mtime +90 --> The -delete option may fail if the directory is not empty. In that 			case, we will use the Linux rm command with find to accomplish the deletion.
+find /var/log -type d -mtime +30 -exec rm -rf {} \; 
+====================================================================================
+
+
+
+
+

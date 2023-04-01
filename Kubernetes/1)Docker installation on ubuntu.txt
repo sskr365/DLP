@@ -6,3 +6,19 @@
   so erse podman
 	sudo yum erase podman buildah
 4) in centos/docker need to start docker service elase docker won't start
+
+======================================================================================
+DOcker basics:
+-----------
+
+kubernetes.io is officaial page for k8s
+
+Docker Architecture:
+CKA -> CKS is best for ceretification
+The main uprpose of dockerization or virtualization is to main same  configurations across all environments
+
+VM --> hypervisor is s/w which helps to create vms on top h/w rssources and vms are isolated
+COntainer --> It is s/w package which contains all dependencies to run application, build once and run anywhere
+
+Docker is a conatiner based platform where we can build, run, deploy and maintain all conatiners, docker is open source and separates application from infrastructure it means it is having own infra and easy to maintain and deploy
+
