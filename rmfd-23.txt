@@ -1,27 +1,17 @@
-1)DevOps Master Program | Week 03 | Git and Git Hub | 
-   Mar 9th -> 1hr, Mar 10th --> 2hr [++]
 
-2)Docker Installation & Day 01 – Docker Fundamentals
-   Mar 9th & Mar10th
-   
-3)Java
-4)Python
-5)Linux
 
 
 =============================================
-9 - 11:30 --> DMP
+9 - 11:30 --> Java & Python
 
 12 - 10 (office)
-  [ java
-    linux
-    office requirement	]
+  [Devops videos]
 
-10:00 - 12:30  -->  kubernetes
+10:00 - 12:30  --> Kubernetes
 
 
 ===================================================
-1) DMP [git, jenkins, ]
+1) DMP [git, jenkins]
 2) Linux
 3) Shell scripting
 4) Java
@@ -43,5 +33,52 @@
 20) Docker
 
 ===================================================
+Kubernetes time tabel: 50 Days + 10 days - JUN-23(Friday)
+---------------------
+Day 02 – Docker Architecture - 2 Days
+Day 03: Docker Containers and Images | Docker Commands - 2 Days
+Day 04: Docker Commands | EntryPoint Vs CMD - 2 Days
+Day 05 : Docker Volumes | Docker Networking - 2 Days
+Kubeadm Installation From Scratch In Telugu - 1 Days
+Day 06 : Kubernetes Architecture and Introduction - 2 Days
+Day 07: Kubernetes Installations [MiniKube | EKS ] - 2 Days
+Day 08: Kubernetes API Access and Resources - 2 Days
+Day 09: Kubernetes Pods | K8s Sidecar and init containers - 2 Days
+K8s HPA | HorizontalPodAutoScaler - 
+Day 10: Kubernetes Namespaces and Quotas - 2 Days
+Day 11: Kubernetes Security Context | Jobs | CronJob - 2 Days
+Day 12: Kubernetes Resource Limitations | K8s Deployments - 2 Days
+Day 13: Kubernetes Deployment Strategy - 2 Days
+Day 14: DaemonSet | Pod Networking | K8s Networking - 2 Days
+Day 15: K8s Networking | Managing K8s DNS - 2 Days
+Day 16: Kubernetes Ingress Service - 2 Days
+Day 17: K8s Storage options | ConfigMaps - 2 Days
+Day 18: K8s Secrets | K8s node Affinity | Pod Affinity | Pod AntiAffinity - 2 Days
+Pull Image From Private Repository in Kubernetes - 
+Day 19: K8s Taint and Tolerations - 2 Days
+Day 20 : K8s RBAC | K8s Service Accounts - 2 Days
+Day 21: K8s Node Management | K8s Troubleshooting Steps - 2 Days
+Day 22: K8s Probes | helm - 2 Days
+Day 23: K8s Kustomize | K8s Blue Green Deployment - 2 Days
+Day 24: K8s CRDs - 2 Days
+Day 25: Project - 3 Days
+		+++++++++
+udemy Kubernetes - 10 day 
+==========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    

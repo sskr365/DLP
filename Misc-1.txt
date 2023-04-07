@@ -1,0 +1,8 @@
+Apache installations:
+=====================
+1)To check apache/httpd version
+	httpd -v
+2)Apache type of installations
+	YUM based
+	RPM based
+	Source code/ Tar ball based

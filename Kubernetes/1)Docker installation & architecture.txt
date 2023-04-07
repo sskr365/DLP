@@ -1,0 +1,110 @@
+1)check any docker installed alredy
+  docker version
+2) if no docker installed, installit by following documentation
+    https://docs.docker.com/engine/install/
+3)In centos , we can't install directly like ubuntu because in centos/redhat podamn package is running,
+  so erse podman
+	sudo yum erase podman buildah
+	sudo yum erase containers-common
+4) in centos/docker need to start docker service else docker won't start
+
+======================================================================================
+Docker basics:
+-----------
+
+kubernetes.io is officaial page for k8s
+
+
+CKA -> CKS is best for ceretification
+The main uprpose of dockerization or virtualization is to maintain  same  configurations across all environments
+
+VM --> hypervisor is s/w which helps to create vms on top h/w rssources and vms are isolated
+Container --> It is s/w package which contains all dependencies to run application, build once and run anywhere
+
+Docker is a conatiner based platform where we can build, run, deploy and maintain all conatiners, docker is open source and separates application from infrastructure it means it is having own infra and easy to maintain and deploy
+
+Major diff b/w vms & containers:
+------------------------------------
+VM ==> server -> hostos -> hypervisor -> vm1, vm2..(having own guestos, binaries&libraries , application) all are isolated
+		own os, longer-term use, slow bootup time, resource wastage, unstability
+container  ==> server -> hostso -> docker engine -> having own binaries & librarirs on top apps no guest os
+		Conatiner is light weight & sharing host os resources, shorter activities(before k8s), setup time very quick, efficent resource usage, better performance, data volumes can be shared easily
+
+Containerization:
+================
+advantages of containerss:  --> flexible , light weight, portable, secure, scalable, loosely coupled
+
+why docker as conatiner platform --> it easily build entire run time of app as single package, runs app independently which helps in micro services, cloud like capabilites(integrated easily with cloud)
+
+For testing & development kind & minikube are mainly used
+
+DOCKER ARCHITECTURE -02
+=======================
+
+We have soa(service oriented architecture) before microservices.
+Monolithic application --> everything like packages, dependencies & tools packed into single application . It is ingle point of failure
+Microservices -> independent each other, for example for ecommerece websites login page, cart page, clothes , shoes, mobiles are developed independently to each other and that too in different languages.
+In microservices monitoring is esay and can fix the issue quickly, easy to scale, better fault isolated  
+
+Microservices works small complex deployments where devops has come into picture
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

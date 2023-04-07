@@ -3,6 +3,17 @@ Types of os --> 1) single user multi-tasking 2)multi-user multi tasking (ex: man
 #users --> this command shows all logged in users
 In linux everything is file, configuration data is stored in text for easy movement and roll back , ability to chain program together to perform complex task (exm: cat /etc/passwd | grep ramu, which hlps in craeting scripts))
 
+Linux server login:
+==================
+VPn(pulse secure) -->bastion host(more security levels)--> jump host --> actual servers
+	bastion & jump host both are gateways , in bastion we can enable 2 factor authentication,robust 	security...
+other way of login:
+	vpn --> RDC(Remote desktop connection) --> windows jump host (here we have terminals(putty) to 	connect linux servers)
+oterway is through citrix
+
+To get access to actual servers , goto centralized tool(service now) & raise request for consolidated server access request
+In backend we may have directory servers(LADP, Active Directory, ansible centralized tool)
+
 Linux Architecture:
 ------------------
 hardware --> kernel(device interface, multi-tasking, device interface), shell(csh, sh, ksh), utilities(top, ls, cat, cd..)
@@ -17,3 +28,13 @@ shell --> on top this only executing commands, means interpreting user commands 
 
 File System Hierarchy:
 -----------------
+/bin --> all executables, essential libraries
+/sbin --> system binaries. system admin executables
+/etc --> all configuraion confiles of applications & system
+/home --> all non root users(normal users)
+/tmp --> stores temp files , we can do aut purge
+/var/log --> all log files of applications
+/proc --> virtual file system, running process & system resources
+   ex: cat /proc/cpuinfo
+
+

@@ -1,0 +1,92 @@
+-> to run the commands from history command use !<command no>
+--> cntrl + l to clear screen
+-> rm (using this command we cannot delete directories -r option is required to delete dir and also same 	for cp command)
+rmdir -> it helps to remove only empty dirs
+
+vi editor options:
+-------------
+dd -> clears line
+set nu -> set numbers to lines
+gg -> first line
+shift + g -> last line
+:line-num -> goes to that line
+yy -> copies line
+p -> paste
+5dd -> delete 5 lines
+
+
+permissions:
+----------
+chmod u+w <file_name>  -> write permission to owner
+chmod o-x <file_name> -> removes execute permission to others
+      g              -> group
+
+yum is command line package manager
+to update package -> yum update wget<package_name>
+to uninstall packsage -> yum remove <package_name>
+to search -> yum search <package_name>
+for info onpackage --> yum info  <package_name>
+to list all installed pacakges -> yum list
+
+to list rpm and debian packages:
+rpm -qa
+in ubuntu -> dpkg -l
+
+Regular commands:
+-----------------
+
+find /home -name "file_name"
+find /home -type d -> serarch all directories under that path
+find /home -type d | grep -i videos -> search videos folder ignoring case sensitive
+find /home -size +10M  -> search all files which are greater than 10Mb
+
+
+To find particualr pattern in directories and sub directories:
+grep -r "error" /var/log | grep -i pam
+
+cntrl + d -> logout/exit from curent session
+cntrl + z -> places the current running process or command in background
+cntrl + l -> to clear screen
+cntrl + c -> to terminate running process or command
+cntrl + r -> to search prevously used commands
+cntrl + a -> starting position of line 
+cntrl + e -> end position of line
+cntrl + u -> clears the typed command
+tab -> auto completion
+
+process monitoring & disk usage
+-----------------
+ps aux -> list all running process including resorce utilization
+top -> to check real time usage of memory & cpu, load avg
+
+trouble shooting commands:
+-------------------------
+ping <ip/host/dns name> -> to check connectivity
+traceroute google.com -> determines the packets routing from one n/w to other n/w
+netstat -an -> active n/w connections, routing tables and ports
+lsof -> list openfiles by process
+dmesg -> kernal related info
+fdisk -> to manipulate disk partiations
+	fdisk -l -> list partiations
+hostname -I -> ip assigned to hostname
+
+ssh will be run by openssh
+ root login, password authentications can be disbled in /etc/ssh/sshd_config
+
+scheduling:
+-------------
+
+crontab -> time based job scheduler
+
+* * * * * /pth/to/command
+
+* -> min(0-59), * -> hour(0-23), * -> Day of month(0-30), * -> month(1-12), * -> Day of week(0-6)
+
+crontab -l -> list all jobs for that user
+crontab -e -> edit mode
+
+uers creations:
+------------
+for management of users we have centralized authentication systems -> ldap, active directory
+
+
