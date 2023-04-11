@@ -67,6 +67,91 @@ udemy Kubernetes - 10 day
 ==========================================================
 
 
+Devops Master Program  (74 days)
+-----------------
+DevOps Master Program | Week 01 | Why Devops | What is Devops | Devops Tools | What is Agile ?  -->6 days 
+DevOps Mater Program In Telugu | Prerequisite 02 | Linux and Bash Scripting. --> 7 days
+DevOps Master Program | Week 03 | Git and Git Hub | --> 5 days
+DevOps Master Program | Week 04 | Maven for DevOps --> 1 day
+Devops Master Program | Gradle for DevOps | Week 04 - Part 02 | --> 1 day
+DevOps Master Program | Week 05 | Cloud Computing Achitecture| IaaS | PaaS | SaaS --> 2 days
+
+------------------
+Virtualization Explained | Docker Vs Virtualization | Week 6 & 7 of DevOps Master Program. 
+DevOps Master Program | Week 06 & 07 | Docker Part - 01  --------> 2days
+---------------------------------------
+
+DevOps Master Program | Week 06 & 07 | Docker Part - 02  --> 1 day
+DevOps Master Program | Week 06 & 07 | Docker Part - 03 --> 1 day
+DevOps Master Program | Week 08 & 09 | Jenkins Part - 01  --> 1 day
+
+--------------------------------------------
+DevOps Master Program | Week 08 & 09 | Jenkins Part - 02
+DevOps Master Program | JenkinsHA Setup | Master/Master [Active/Passive]-HAProxy | Jenkins Part - 03
+DevOps Master Program | Week 08 & 09 | Jenkins Full BackUp and Restore. | Jenkins Part - 04
+DevOps Master Program | Week 08 & 09 | Jenkins on Kubernetes | Jenkins Part -05 | Helm Deployment --> 1 day.
+------------------------------------------------------------
+
+------------------------------------------------------
+DevOps Master Program | Week 08 & 09 | Jenkins Security | Jenkins Part -06 | Jenkins with LDAP. |
+Open LDAP Configuration for Jenkins | Join DevOps Master Program | Join " Buy Me Biryani" membership --> 1 day
+-----------------------------------------------------------------
+
+DevOps Master Program | Week 08 & 09 | Part -07 | Jenkins Slave Nodes | VM, EC2 & Docker as Slave. --> 1 day
+DevOps Master Program | Week 08/09 | Part-08 | Jenkins GIT Integration | Maven/Pipeline Jobs --> 1 day
+
+---------------------------------------
+Jenkins Pipeline Syntax | Impressive Document.
+DevOps Master Program | Week 08/09 | Part-09 | Jenkins Declarative Pipeline Scripts - [01]. --> 1 day
+----------------------------------------------
+
+DevOps Master Program | Week 08/09 | Part-10 | Jenkins Declarative/Scripted Pipelines - [02] --> 1 day
+DevOps Master Program | Week 08/09 | Part-11 | Jenkins Multi-Branch Pipeline with Git and GiHUb[APP] --> 1 day
+
+-------------------------------
+Jenkins Diagnosis with Support Core Plugin | Jenkins Month :) | Join DevOps Master Program.
+SonarQube Installation on Linux and Integration With Jenkins In Telugu.
+Kaniko In Telugu | Build Container Image with Kaniko using Kubernetes and Jenkins | No Docker Daemon  --> 1 day
+---------------------------------------
+
+DevOps Master Program | Week 10 to 11 | Terraform and AWS Introduction.| IAC in Telugu --> 1 day
+DevOps Master Program | Week 10 to 11 | Terraform and AWS Introduction | AWS IAM Introduction. --> 1day
+DevOps Master Program | Week 10 to 11 | AWS IAM Hands-On | #AWSInTelugu | #AWS #IAM #DEVOPS #LINUX --> 1 day
+
+-------------------------------
+AWS Regions Importance | AWS in Telugu | AWS RealTime Series - 01 #AWS #AWSInTelugu #AWSRegions #IAM
+AWS IAM Importance | AWS in Telugu | AWS RealTime Series - 02 #AWS #AWSInTelugu #AWSRegions #IAM --> 1 day
+--------------------------------------
+
+AWS EC2 Importance - 01 | AWS in Telugu | AWS RealTime Series - 03 #AWS #AWSInTelugu #AWSEC2 #IAM --> 1 day
+-----------------------
+AWS EC2 Importance - 02 | AWS in Telugu | AWS RealTime Series - 04 #AWS #AWSInTelugu #AWSEC2Volumes 
+AWS Cloud RealTime Incidents. | AWS in Telugu --> 1 day
+-------------------------------
+
+AWS EC2 Importance - 03 | AWS in Telugu | AWS RealTime Series - 05 --> 2days
+AWS EC2 Importance - 04 | AWS in Telugu | AWS RealTime Series - 06  --> 1 day
+AWS VPC PART - 01 | AWS in Telugu | AWS RealTime Series - 07 --> 2 days
+AWS VPC PART - 02 | AWS in Telugu | AWS RealTime Series - 08 #AWSInTelugu #AWSASG #AWSLBs #AWSVPC  --> 1 day
+
+------------------
+AWS Project In Telugu - 01 | AWS Project Idea |
+AWS Project In Telugu - 02 | AWS Architecture --> 1 day
+---------------
+
+AWS 3-Tier Project - Telugu | AWS VPC | IAM | S3 | AWS Roles | ELB | RDS | EC2 | Auto Scaling --> 2 days
+DevOps Master Program | Week 12 to 14 | TerraForm End To End Part -01 | Watch AWS (Week - 10 to 11) --> 3 days
+DevOps Master Program | Week 12 to 14 | TerraForm End To End Part -02 | TerraForm Project - 01  --> 1 day
+DevOps Master Program | Week 12 to 14 | TerraForm End To End Part -03 |  --> 1 day
+Ansible In Telugu End To End With Project | Ansible For DevOps  --> 15  days
+DevOps Master Program | Week 17 and 18 | Kubernetes For DevOps - Part -01 --> 6 days
+DevOps Master Program | Week 15 and 16 | Kubernetes Networking For DevOps - Part - 02 --> 1 day
+DevOps Master Program | Week 15 & 16 | K8S Managing Scheduling | Kubernetes for DevOps | Part - 03 --> 1 day
+
+-----------------------
+Devops RoadMap | Career Opportunities | DevOps Course | Devops Project | DevOps Resume
+Collection of DevOps Projects Architecture | Azure | AWS | GCP | --> 1 day
+-----------------------------
 
 
 
