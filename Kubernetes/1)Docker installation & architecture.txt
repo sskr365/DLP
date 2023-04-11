@@ -23,6 +23,8 @@ Container --> It is s/w package which contains all dependencies to run applicati
 
 Docker is a conatiner based platform where we can build, run, deploy and maintain all conatiners, docker is open source and separates application from infrastructure it means it is having own infra and easy to maintain and deploy
 
+we have dofferent platforms to run containers like docker engine, containerd, CRI-O(container run time interface) all these are docker containers support platforms , k8s will support all these to manage containers.
+
 Major diff b/w vms & containers:
 ------------------------------------
 VM ==> server -> hostos -> hypervisor -> vm1, vm2..(having own guestos, binaries&libraries , application) all are isolated
@@ -47,6 +49,49 @@ Microservices -> independent each other, for example for ecommerece websites log
 In microservices monitoring is esay and can fix the issue quickly, easy to scale, better fault isolated  
 
 Microservices works small complex deployments where devops has come into picture
+Here for every micro service there will be image
+
+Docker is  client-server architecture , both client & server will be in same m/c
+
+Server -> [docker host {docker daemon, containers, images}, registry ], n/w, storage
+client -> from where we can manage docker using commands
+
+docker engine is present in server and docker daemon, cli, rest-api are present inside docker engine
+Administartor can set ceratin conditions in docer engine to main current state or desired state of containers
+
+when ever we will pass command from client, it goes to server and talks to docker-daemon
+dockerd -> it mean docker daemon
+docker commands will communicate to dockerd through api calls
+docker-daemon is the one which controls all the services of docker host & oversees the behaviour of 	conatiners and also helps to communicate to other daemons which are running on host
+
+docker daemon invokes all the commands through RestAPI, from cli also first goes to restapi and then to docker daemon
+
+Docker has two editions
+1)CE(community edition) -->free, opensource -> stable(quarterly release) and edge(every month release)
+2)EE(enterprise edition)  --> docker signed images, support -> basic, standard, advanced
+
+image is a binary template to create conatiners
+binary template -> it is metadata, conatins all the info about container like functionality and requirement
+For storing images and containers private repos will be used, dockerhub or public repos will not be used for secutity reasons
+
+COntainer is environment where applications runs, it has its own n/w, storage.
+As containers are independent they should communicate using n/w, docker n/ws are like below with drivers
+Bridge - default n/w for conatiners for communication among containers
+Host
+None
+overlay
+macvlan -  container has mac address 
+
+Storage:
+--------
+Image has top layer which is writable layer and can store data on container
+persistent volume types:
+1) Data volumes
+2) volume containers
+3)mount dir
+4)storage plugins -> using thois external storage devices can be connected
+
+
 
 
 

@@ -1,0 +1,112 @@
+Newrelic infra agent and elasticsearch agent installation
+==================================================
+
+Install Newrelic infra agent by using below command:
+
+curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/el/8/x86_64/newrelic-infra.repo
+
+Exporting the proxy if we are fcaing proxy issue while downloading newrelic infra agent:
+
+export http_proxy=http://hpeproxy.its.hpecorp.net:8080
+export https_proxy=$http_proxy
+
+Execute below commands:
+
+yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
+yum install newrelic-infra -y 
+service newrlic-infra restrat 
+
+To update existing newrelic infra agent to latest execute below commands:
+
+yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
+yum update newrelic-infra -y
+
+service newrlic-infra restrat
+
+===============================
+ 
+update newrelic-infra.yml content in below path:
+
+vi /etc/newrelic-infra.yml
+
+license_key: bea848dde8ab41e5f07794fc58f77a3ee5a3NRAL
+proxy: http://hpeproxy.its.hpecorp.net:8080
+verbose: 0
+custom_attributes:
+  eprid: '210135'
+  appName: 210135-Partner Ready Portal (PRP)-Production
+  environment: Production
+  location: CHA08
+
+To enable logging for newrelic under "/var/log/newrelic-infra/newrelic-infra.log"
+
+modify the below properties in /etc/newrelic-infra.yml
+
+verbose: 0
+log_file: /var/log/newrelic-infra/newrelic-infra.log
+
+==================================================
+
+
+chmod 755 newrelic-infra.yml
+
+--> update proxy in newrelic.yml file for existing servers
+
+
+Intall elasticsearch newrelic agent:
+
+yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
+yum install nri-elasticsearch
+service newrlic-infra restrat
+
+Update the content of elasticsearch-config.yml at location " /etc/newrelic-infra/integrations.d/"
+
+vim elasticsearch-config.yml
+
+
+integrations:
+- name: nri-elasticsearch
+  env:
+    CLUSTER_ENVIRONMENT: production
+    CONFIG_PATH: /opt/cloudhost/elasticsearch-6.1.0/config/elasticsearch.yml
+
+    HOSTNAME: p1lg102073.dc01.its.hpecorp.net
+    LOCAL_HOSTNAME: p1lg102073.dc01.its.hpecorp.net
+    PORT: 9200
+
+    #USERNAME: <username for accessing Elasticsearch Node>
+    #PASSWORD: <password for the given user.>
+
+    TIMEOUT: 30
+
+    #USE_SSL: <(Optional) true or false to use SSL. If true Certificate bundle must be supplied. (default false)>
+    #CA_BUNDLE_DIR: <(Optional) Required if use_ssl is true. Directory for certificate authority bundle, must be included if use_ssl is true>
+    #CA_BUNDLE_FILE: <(Optional) Required if use_ssl is true. File for certificate authority bundle, must be included if use_ssl is true>
+
+    #INDICES_REGEX: <(Optional) Can be used to filter which indicies are collected. If left blank it will be ignored>
+    #COLLECT_INDICES: <(Optional) true or false to collect indices metrics. If true collect indices, else do not. (default true)>
+    #COLLECT_PRIMARIES: <(Optional) true or false to collect primaries metrics. If true collect primaries, else do not. (default true)>
+    #MASTER_ONLY: <(Optional) If true metrics will only be collected if the node is an elected master (default false)>
+
+  interval: 15s
+  labels:
+    role: elasticsearch
+    environment: Production
+    eprid: 210135
+    appName: 210135-Partner Ready Portal (PRP)-Production
+  inventory_source: config/elasticsearch
+
+
+
+=====================================
+
+Newrelic dash board
+-------------
+
+Newrelic -> hosts
+to check all the hosts --> newrelic -> infrastructure -> filter hosts --> serach by using erpids 
+to check for services like elasticserach --> newrelic -> all netities -> serach on left-handside(services like kubernets, elasticserach)
+
+
+
+

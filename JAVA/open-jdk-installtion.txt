@@ -1,0 +1,6 @@
+sudo yum install java-1.8.0-openjdk-devel
+vim ~/.bashrc
+	export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
+	export PATH=$JAVA_HOME/bin:$PATH
+source ~/.bashrc
+echo $JAVA_HOME

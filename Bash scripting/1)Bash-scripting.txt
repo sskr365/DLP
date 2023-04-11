@@ -1,0 +1,43 @@
+I/O redirections:
+---------------------
+'>' -> redirects output to some other file
+  Ex: ls > myfiles.txt
+'>>' -> append opt put to given file above one overrides to the given file
+'<' -> pass give text as input
+	Ex: sort < myfiles.txt 
+'2>' -> redirects errors to some other file or location
+  ex: grep root /etc/* 2>/dev/null > grepout.txt
+    when we run "grep root /etc/*" it will show permission denied to some files, those files will be redirected to /dev/null and clear out will be redirected to grepout.txt
+
+ls -l | grep 1 -> it will list all files which has '1' character ( even 121, 0001 , 23516 filea also)
+
+Variables:
+----------
+env --> it will list all environment variables
+variable usage --> key=value
+varaibles will be available in current shell, to use variables in sub shells we will use export command
+
+To print   varaibles -> echo $<KEY>
+  Ex - echo $SHELL
+
+if we are running any command in linux it will go serach in "echo $PATH"
+
+for example:
+----------
+myvar=red
+-> toprint it "echo $myvar"  -> prints red,
+   suppose if we give "echo $myvar1" , it wont prnt anything because it is not defined,
+                      "echo ${myvar}1" -> prints red1
+variables will work in same shell, if we enter into other shell it won't work , ex: bash(it enters into other shell, type exut to come out of it)
+
+to use varaibles in sub shell export the variable using export command
+	export key=value
+
+Simple shell script for sum:
+---------------------------
+a=5
+b=10
+sum =$((a+b))
+echo $sum
+
+

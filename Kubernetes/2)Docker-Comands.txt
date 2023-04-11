@@ -1,0 +1,4 @@
+1)docker search centos -> it will search all centos images of docker form dockerhub
+2)docker pull ubuntu -> it will pull images(images are in layers)
+3)docker images -> shows all present images
+4)

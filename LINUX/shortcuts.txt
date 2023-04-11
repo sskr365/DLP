@@ -3,3 +3,13 @@ cntrl+s --> forward searching
 cntr+a --> start of line
 cntl+e --> end of line
 
+cntrl + d -> logout/exit from curent session
+cntrl + z -> places the current running process or command in background
+cntrl + l -> to clear screen
+cntrl + c -> to terminate running process or command
+cntrl + r -> to search prevously used commands
+cntrl + a -> starting position of line 
+cntrl + e -> end position of line
+cntrl + u -> clears the typed command
+tab -> auto completion
+
