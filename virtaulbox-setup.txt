@@ -1,9 +1,0 @@
-Steps:
--------
-1) Virtualbox download link:
-    https://www.virtualbox.org/wiki/Downloads
-
-2)osbimages download link:
-	https://www.osboxes.org/virtualbox-images/
-3)After downloading virtualbox image, go to virtual box
-   new -> name it & select folder where to configure -> select use an existing virtual hard disk file & select downloaded image
