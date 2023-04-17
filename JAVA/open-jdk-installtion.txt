@@ -4,3 +4,4 @@ vim ~/.bashrc
 	export PATH=$JAVA_HOME/bin:$PATH
 source ~/.bashrc
 echo $JAVA_HOME
+

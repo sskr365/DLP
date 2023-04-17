@@ -1,9 +1,17 @@
+2)Working with Aliases:
+
+
+
+
+===================================
+======================================
+
 I/O redirections:
 ---------------------
 '>' -> redirects output to some other file
   Ex: ls > myfiles.txt
 '>>' -> append opt put to given file above one overrides to the given file
-'<' -> pass give text as input
+'<' -> passes given text as input
 	Ex: sort < myfiles.txt 
 '2>' -> redirects errors to some other file or location
   ex: grep root /etc/* 2>/dev/null > grepout.txt
@@ -28,10 +36,11 @@ myvar=red
 -> toprint it "echo $myvar"  -> prints red,
    suppose if we give "echo $myvar1" , it wont prnt anything because it is not defined,
                       "echo ${myvar}1" -> prints red1
-variables will work in same shell, if we enter into other shell it won't work , ex: bash(it enters into other shell, type exut to come out of it)
+variables will work in same shell, if we enter into other shell it won't work , ex: bash(it enters into other shell, type exit to come out of it)
 
 to use varaibles in sub shell export the variable using export command
 	export key=value
+	ex: myvar=red
 
 Simple shell script for sum:
 ---------------------------
@@ -39,5 +48,14 @@ a=5
 b=10
 sum =$((a+b))
 echo $sum
+
+2) Working with Aliases:
+======================
+to check aliases in system use command "alias"
+To assign alais:
+ Ex: alias my_cmd="ls -lrt"
+To remove aliaS:
+ Ex: unalias my_cmd
+
 
 

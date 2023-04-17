@@ -18,3 +18,4 @@ New virtual m/c --> installer( download from ubuntu official page/ redhat develo
 	https://ubuntu.com/download/server
 	https://developers.redhat.com/products/rhel/download
 			(sskrdevop21@gmail.com, abcd@1234)
+	redhat login - sskrdevops23

@@ -7,7 +7,8 @@ topics:
 5)How to Delete Files Older than 30 days in Linux 
 6)How to disable selinux
 7)Adding ports to Firewall
-
+8)Linux check user password expiration using chage & set password never expire
+9)Delete user on RHEL 8 
 
 
 1) To check no of cpus:
@@ -67,7 +68,26 @@ to check ports status:
 	netstat -tulpn
 firewall-cmd --permanent --zone=drop --add-port=9200/tcp ;firewall-cmd --reload
 firewall-cmd --list-ports
+
+To Add multiple ports:
+---------------
+# firewall-cmd --permanent --add-port={22/TCP,8109/tcp,443/tcp,1154/tcp,80/tcp,8080/tcp,8443/tcp,22527/tcp,8983/tcp,1526/tcp,4010/tcp,4123/tcp,8543/tcp,8444/tcp,25/tcp,3621/tcp,5693/tcp,4542/tcp,46689/tcp,3483/tcp,514/tcp,3355/tcp,8005/tcp,34469/tcp,4999/tcp,9000/tcp,46350/tcp}
 =====================================================================
+8) Linux check user password expiration using chage & set password never expire
+---------------------
+to check status -> chage -l <username>
+to make password never expire -> passwd -x -1 rehat-user (or) chage -M -1 redhat-user
+
+
+=====================================================
+9) Delete user on RHEL 8
+----------------
+
+userdel -f -r redhat-user  --> -r -> instructs the userdel command to remove also user’s home directory:
+			-f -> to force the user removal in case the user is logged:
+
+
+
 
 
 

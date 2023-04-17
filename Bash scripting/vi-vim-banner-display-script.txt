@@ -1,0 +1,28 @@
+vi () {
+  local config_files=("example.txt" "index.xml" "sample.txt")
+  for file in "${config_files[@]}"; do
+    if [[ "$@" == *"$file"* ]]; then
+      echo "#######################################################################"
+      echo "Warning: Use github repository for editing $file configuration file."
+      echo "#######################################################################"
+      /usr/bin/vi "$@" // displays warning message and opens vi editor, if don't want to open file only display warring means remove this line
+      return
+    fi
+  done
+  /usr/bin/vi "$@"
+}
+
+
+vim () {
+  local config_files=("example.txt" "index.xml" "sample.txt")
+  for file in "${config_files[@]}"; do
+    if [[ "$@" == *"$file"* ]]; then
+      echo "#######################################################################"
+      echo "Warning: Use github repository for editing $file configuration file."
+      echo "#######################################################################"
+      /usr/bin/vi "$@"
+      return
+    fi
+  done
+  /usr/bin/vi "$@"
+}
