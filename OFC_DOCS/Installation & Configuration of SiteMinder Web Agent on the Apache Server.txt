@@ -1,0 +1,138 @@
+Installation & Configuration of SiteMinder Web Agent on the Apache Server 
+(Apache Version 2.4)
+
+Installation Steps:
+=======================
+1.Download the SiteMinder Web Agent "smwa-12.52-sp01-cr06-linux-x86-64.zip" on your system from the below URL.
+URL: https://github.hpe.com/Passport/WebAgentInstallers/releases/tag/v2.0
+2.Extract the downloaded zip and copy the web agent directory "smwa-12.52-sp01-cr06-linux-x86-64" (Apache 2.4 module) to the Apache server.
+
+3.Become super user (root)
+Command: pbrun su root
+
+4.Change to the directory <Path To>/smwa-12.0-sp3-cr012-linux-x86-64 and give executable permissions to the "ca-wa-12.0-sp3-cr012-linux-x86-64.bin" file.
+Command: chmod +x ca-wa-12.52-sp01-cr06-linux-x86-64.bin
+
+5.Run the bin file (ca-wa-12.52-sp01-cr06-linux-x86-64.bin) to install the web agent on the Apache server.	
+Command: ./ca-wa-12.52-sp01-cr06-linux-x86-64.bin
+If not able to install, run the installer with the 'LAX_VM' option.
+./ca-wa-12.52-sp01-cr11-linux-x86-64.bin LAX_VM <path_to_java>
+EXAMPLE: 
+./ca-wa-12.52-sp01-cr11-linux-x86-64.bin LAX_VM /opt/CA/jdk1.8.0_251/bin/java
+
+6.Follow the instructions and Accept License Agreement. When asks for the Absolute installation path provide the following path and confirm.
+Installation Path: /opt/ca/siteminder12/webagent/
+
+7.Now, webagent is installed on your Apache server.
+
+Configuration steps:
+=======================
+1.Change to the directory /opt/ca/siteminder12/webagent/
+	Command: cd /opt/ca/siteminder12/webagent/
+
+2.source ./ca_wa_env.sh
+	a.Verify the web agent environment variables are set appropriately by printing one of those variables.
+	Command: echo $LD_LIBRARY_PATH
+
+3.Change to the directory /opt/ca/siteminder12/webagent/bin
+	Command: cd /opt/ca/siteminder12/webagent/bin
+
+4.Run the following command to register the host and generate the SmHost.conf file.
+	Command: ./smreghost -i policy1-stg.austin.hpecorp.net:44001 -u reghostadmin -p p4ssp0rt -hn <Hostname with fully qualified domain name> -hc 	HPPApplications_ClusterHCO
+	Example: ./smreghost -i policy1-stg.austin.hpecorp.net:44001 -u reghostadmin -p p4ssp0rt -hn hc4t06437.itcs.hpe.com -hc HPPApplications_ClusterHCO
+
+5.After running the above command, if you get this error "./smreghost: error while loading shared libraries: libstdc++.so.5: cannot open shared object file: No such file or directory", try below steps and run the step 4 again.
+	a.Run the below command.
+	Command: yum repolist all
+	b.If suitable repository for your OS version is not found, download the required package from web and install it on the server using following 	commands.
+	i.Download package from the web.
+	Command: wget http://rpmfind.net/linux/centos/7.5.1804/os/x86_64/Packages/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
+	ii.Install the package.
+	Command: rpm -i compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
+
+6.Upon successful registration of the host, SmHost.conf file will be generated in the current directory. 
+	a.Verify generated SmHost.conf file.
+	Command: cat SmHost.conf
+
+7.Copy SmHost.conf file to the /etc/httpd/conf/ directory.
+	Command: cp SmHost.conf /etc/httpd/conf/.
+
+8.Update policyserver in /etc/httpd/conf/SmHost.conf file.
+	a.Replace existing policyserver with the following:
+		policyserver=”policy1-stg.austin.hpecorp.net,44001,44002,44003”
+		policyserver=”policy2-stg.austin.hpecorp.net,44001,44002,44003”
+
+9.Copy the file WebAgentTrace.conf from the directory /opt/ca/siteminder12/webagent/config to /etc/httpd/conf/
+	Command: cp /opt/ca/siteminder12/webagent/config/WebAgentTrace.conf /etc/httpd/conf/.
+
+10.Change to the /etc/httpd/conf/ directory.
+	a.Create the following files with the respective contents.
+	i.File Name: LocalConfig.conf
+	Contents:
+	TraceConfigFile="/etc/httpd/conf/WebAgentTrace.conf"
+	TraceAppend="YES"
+	TraceFile="YES"
+	TraceFileName="<PATH TO>/trace.log"	# trace.log file path	
+	TraceFileSize="100"
+	TraceFilesToKeep="50"
+
+	LogAppend="YES"
+	LogFile="YES"
+	LogFileName="<PATH TO>/siteminder.log" # siteminder.log file path
+	LogFileSize="100"
+	LogFilesToKeep="35"
+
+	ii.File Name: WebAgent.conf
+	Contents:
+	HostConfigFile="/etc/httpd/conf/SmHost.conf"
+	AgentConfigObject="<ACO_EPRID_APPNAME_ENV>"
+	EnableWebAgent="YES"
+	ServerPath="/etc/httpd/conf"
+	localconfigfile="/etc/httpd/conf/LocalConfig.conf"
+	LoadPlugin="/opt/ca/siteminder12/webagent/bin/libHttpPlugin.so"
+
+11.Change ownership of the files SmHost.conf, WebAgent.conf, WebAgentTrace.conf, LocalConfig.conf under the directory /etc/httpd/conf/
+	Command: chown apache:apache SmHost.conf WebAgent.conf WebAgentTrace.conf LocalConfig.conf
+
+12.Enable siteminder load module in siteminder.conf
+	a.Under /etc/httpd/conf.d/, check if siteminder.conf file exists. If file doesn't exists, create the sitereminder.conf file and add the below configs to it.
+	LoadModule sm_module "/opt/ca/siteminder12/webagent/bin/libmod_sm24.so"
+	<IfModule sm_module>
+        	SmInitFile "/etc/httpd/conf/WebAgent.conf"
+	</IfModule>
+	b.Change ownership of the siteminder.conf file.
+	Command: chown apache:apache /etc/httpd/conf.d/siteminder.conf
+
+13.Restart Apache service.
+	Command: systemctl testart httpd
+
+14.If Apache service failed to restart, check for the detailed error information using below command.
+	Command: systemctl status -l httpd
+	a.If you find the below error, print the web agent environment variables (set by the script ca_wa_env.sh) and append them to the /etc/sysconfig/httpd file.
+	Error: "httpd: Syntax error on line 415 of /etc/httpd/conf/httpd.conf: Syntax error on line 1 of /etc/httpd/conf.d/siteminder.conf: Cannot load /opt/ca/siteminder12/webagent/bin/libmod_sm24.so into server: libsmerrlog.so: cannot open shared object file: No such file or directory"
+	i.Print the web agent environment variables on your server and use those values to append them in /etc/sysconfig/httpd file.
+		Example:
+			echo $NETE_WA_ROOT
+			echo $NETE_WA_PATH, etc.
+	ii.Web agent environment variables/values to be appended to the /etc/sysconfig/httpd file. Those lines looks similar to following.
+			#HPP Configurations
+			NETE_WA_ROOT=/opt/ca/siteminder12/webagent
+			NETE_WA_PATH=/opt/ca/siteminder12/webagent/bin
+			CAPKIHOME=/opt/ca/siteminder12/webagent/CAPKI	
+	LD_LIBRARY_PATH=/opt/ca/siteminder12/webagent/bin:/opt/ca/siteminder12/webagent/bin/thirdparty:
+	PATH=/opt/ca/siteminder12/webagent/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/LinuxCOE/bin:/opt/mtp/bin
+	Note: Do not copy the above lines as it is, values may vary from server to server. So, kindly use only the above printed values (in step 14.a.i) on 	your server while appending them to the file.
+	b.Restart the Apache service again and service should start without any issues.
+
+15.To enable siteminder webagent logs add following lines in the /etc/httpd/conf/WebAgent.conf file.
+	LogFile="YES"
+	LogFileName="<PATH TO>/webagent.log" # webagent.log file path
+Disable monit for Apache Service
+	If monitoring is enabled for the Apache service, then the service needs to be unmonitored for debugging purpose. Following commands helps you to unmonitor the Apache service.
+	Commands:
+	monit –h 				# Print a help text
+	monit summary 			# Print short status information for each service
+	monit stop <service-name>		# Stop the named service and disable its monitoring	Example: monit stop httpd	
+monit unmonitor <service-name>	# Disable monitoring of the named service. Monit will also disable monitoring of all services that depends on this service.
+	Example: monit unmonitor httpd 
+

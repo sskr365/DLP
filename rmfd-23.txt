@@ -1,11 +1,12 @@
 
 =============================================
-9:30 - 12:00 --> Java & Python
+9:30 - 12:00 --> Topics
 
-12 - 10 (office)
-  [Devops videos]
+12 - 9 (office)
+  Java & Python
+  Devops Videos
 
-10:00 - 12:30  --> Kubernetes
+9:00 - 11:30  --> Kubernetes
 
 
 ===================================================
@@ -16,7 +17,7 @@
 5) Groovy
 6) Python scripting
 7) SQL
-8) Elastic search
+8) Elastic Logstash & Kibana
 9) API/web
 10) NewRelic
 11) JIRA
@@ -29,6 +30,12 @@
 18) Apache httpd
 19) Tomcat
 20) Docker
+21) Git & Github
+22) Jenkins
+23) Kubernetes
+24) Ansible
+25) Sonarcube
+26) Nexus
 
 ===================================================
 Kubernetes time tabel: 50 Days + 10 days - JUN-23(Friday)

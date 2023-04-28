@@ -71,7 +71,7 @@ firewall-cmd --list-ports
 
 To Add multiple ports:
 ---------------
-# firewall-cmd --permanent --add-port={22/TCP,8109/tcp,443/tcp,1154/tcp,80/tcp,8080/tcp,8443/tcp,22527/tcp,8983/tcp,1526/tcp,4010/tcp,4123/tcp,8543/tcp,8444/tcp,25/tcp,3621/tcp,5693/tcp,4542/tcp,46689/tcp,3483/tcp,514/tcp,3355/tcp,8005/tcp,34469/tcp,4999/tcp,9000/tcp,46350/tcp}
+# firewall-cmd --permanent --zone=drop --add-port={22/TCP,8109/tcp,443/tcp,1154/tcp,80/tcp,8080/tcp,8443/tcp,22527/tcp,8983/tcp,1526/tcp,4010/tcp,4123/tcp,8543/tcp,8444/tcp,25/tcp,3621/tcp,5693/tcp,4542/tcp,46689/tcp,3483/tcp,514/tcp,3355/tcp,8005/tcp,34469/tcp,4999/tcp,9000/tcp,46350/tcp}
 =====================================================================
 8) Linux check user password expiration using chage & set password never expire
 ---------------------

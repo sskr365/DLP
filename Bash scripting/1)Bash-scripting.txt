@@ -1,5 +1,7 @@
 2)Working with Aliases:
-
+3)Startup files:
+4)Alternatice Shells
+5)Exit codes
 
 
 
@@ -57,5 +59,44 @@ To assign alais:
 To remove aliaS:
  Ex: unalias my_cmd
 
+3)Startup files:
+===============
+In os environmet ther are some startup files when ever os boots to set env variables and aliases. There are user startup files, subshell satrtip files, loginshell startup 
+General startupfiles are
+	~/.bashrc
+	~/.bash_profile
+	~/.bash_login
+	~/.profile
+For global setting for bash startup files are
+	/etc/bas.bashrc
+	/etc/bashrc
 
+.bash_profile is read and executed when Bash is invoked as an interactive login shell, while .bashrc is executed for an interactive non-login shell.
+
+Use .bash_profile to run commands that should run only once, such as customizing the $PATH environment variable .
+Put the commands that should run every time you launch a new shell in the .bashrc file. This include your aliases and functions , custom prompts, history customizations , and so on.
+
+4)Alternative shells:
+===================
+sh -> bourne shell , this is original shell
+bash -> bourne again shell, runs in any environment mostly
+cshell -> /bin/csh  generally developed by c
+kshell -> korne shell, combination of bourne & C shell
+zsh --> in macos
+dash --> in debian environmnets
+
+To check which shell is in use in linux --> echo $SHELL
+
+
+5)Exit code:
+===========
+exit codes runs after execution of every command
+	echo $? --> shows last exit code
+		0 -> success
+		1 -> generic error
+		2 -> missuse of shell
+
+To change shell, command is --> chsh -s /bin/bash
+
+==================14th  day complted=============================
 
