@@ -1,0 +1,111 @@
+import java.time.LocalDateTime
+import groovy.json.JsonBuilder
+
+pipeline {
+    agent any
+
+    stages {
+        stage("Build Info") {
+            steps {
+                echo '*** START BUILD-INFO***'
+
+                echo "BUILD_TAG --> ${env.BUILD_TAG}"
+
+                echo '*** END BUILD-INFO***'
+            }
+        }
+        stage("Get User Input") {
+            steps {
+                echo '*** START GET-USER-INPUT ***'
+
+                script {
+                    properties([
+                        parameters([
+                            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', description: '', filterLength: 1, filterable: false, name: 'GIT_HPE_BRANCH', randomName: 'choice-parameter-4816978971651983', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: ''], script: [classpath: [], sandbox: false,
+                                script: '''
+                                    def gitURL = "git@github.hpe.com:prpdxp/portal-utils.git"
+                                    def command = "git ls-remote -h $gitURL"
+                                    def proc = command.execute()
+                                    proc.waitFor()
+                                    if ( proc.exitValue() != 0 ) {
+                                    println "Error, ${proc.err.text}"
+                                    return
+                                    }
+                                    def branches = proc.in.text.readLines().collect {
+                                        it.replaceAll(/[a-z0-9]*\\trefs\\/heads\\//, \'\')
+                                    }
+                                    return branches
+                                '''
+                            ]]],
+                            // extendedChoice(defaultValue: 'NO', description: 'Upload artifact(s) to Nexus?', multiSelectDelimiter: ',', name: 'NEXUS_UPLOAD', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_RADIO', value: 'YES,NO', visibleItemCount: 5),
+                            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', description: '', name: 'BUILD_COMMENT', omitValueField: true, randomName: 'choice-parameter-200315015014515', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: ''], script: [classpath: [], sandbox: false,
+                                script: '''
+                                    return "<textarea name=\\"value\\" style=\\"margin: 0px; height: 125px; width: 400px;\\"></textarea>"
+								'''
+                            ]]]
+                        ])
+                    ])
+                }
+
+                echo '*** END GET-USER-INPUT ***'
+            }
+        }
+        stage('Git Checkout') {
+            steps {
+                git branch: '${GIT_HPE_BRANCH}', url: 'git@github.hpe.com:prpdxp/portal-utils.git'
+            }
+        }
+        stage('Build Module') {
+            steps {
+                echo '*** START BUILD-MODULE ***'
+
+                script {
+                    dir("prp-custom-agent") {
+                        sh 'chmod +x gradlew'
+                        try {
+                            sh "./gradlew -Dhttps.proxyHost=proxy.houston.hpecorp.net -Dhttps.proxyPort=8080 clean build --stacktrace"
+                        } catch(Exception e) {
+                            echo "Encountered exception while building module (prp-custom-agent) :: ${e}"
+                        }
+                    }
+                    echo "JOB_NAME --> ${env.JOB_NAME}"
+                    echo "BUILD_NUMBER --> ${currentBuild.number}"
+					
+					def artifactList = sh(script: 'find . -wholename "*build/libs/*.jar" -type f -printf "%f\n" 2>/dev/null || true', returnStdout: true).split()
+                    echo "artifactList --> ${artifactList}"
+                    def artifactCount = artifactList.size()
+                    echo "artifactCount --> ${artifactCount}"
+                        
+                    BUILD_TRIGGER_BY = "${currentBuild.getBuildCauses()[0].userId}"
+                    echo "BUILD_TRIGGER_BY: ${BUILD_TRIGGER_BY}"
+		    
+                    def jenkins = Jenkins.getInstance()
+                            
+                    def FULL_PROJECT_NAME = currentBuild.getFullProjectName()
+                    echo "FULL_PROJECT_NAME --> ${FULL_PROJECT_NAME}"
+
+                    JOB_BUILD_DIR = jenkins.getItemByFullName(FULL_PROJECT_NAME).getBuildDir()
+
+                    // prepare json
+                    def builder = new JsonBuilder()
+                    builder performedBy: BUILD_TRIGGER_BY, performedAt: LocalDateTime.now().toString(), artifactCount: artifactCount, artifactList: artifactList, action: 'BUILD', env: '', nodeList: '', comment: params.BUILD_COMMENT
+                    json = builder.toPrettyString()
+                        
+                    // print to console and write to a file
+                    println json
+                    new File(JOB_BUILD_DIR.toString() + "/" + currentBuild.number + "/build-info.json").write(json)
+                }
+
+                fileOperations([fileCopyOperation(excludes: '', flattenFiles: true, includes: '**/build/libs/*.jar', targetLocation: 'jenkins-build-output')])
+                
+                echo '*** END BUILD-MODULES ***'
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'jenkins-build-output/*', onlyIfSuccessful: true
+            cleanWs()
+        }
+    }
+}

@@ -1,0 +1,12 @@
+ansiblecfg_path: .ansible.cfg
+roles_path: roles
+propertyfiles_src: /home/ansiuser/prp_configs/propertyFiles
+apache_bk: /etc/httpd/backup
+Itg2jdbcLiferayDSDBName: PRP-DXP-ITG-OIDC
+Itg1jdbcLiferayDSDBName: PRP-DXP-ITG
+Stg1jdbcLiferayDSDBName: PRP_STG1
+Stg2jdbcLiferayDSDBName: PRP_STG3
+TomcatVersion: tomcat-8.0.32
+DevjdbcLiferayDSDBName: PRP-DXP-DEV4
+DevjdbcpricingDBName: Allcomm_ITG
+Itg1jdbcpricingDBName: Allcomm_ITG

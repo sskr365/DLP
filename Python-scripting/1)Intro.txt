@@ -1,0 +1,7 @@
+Python is multipurpose or genearl purpose programming language
+->Python has many modules and platform independent
+->It supports functional & OOPs
+
+Python has 2 versions 2.x & 3.x
+3.x most output has objects but in 2.x direct ouputs
+----intro done -----------

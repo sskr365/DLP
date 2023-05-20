@@ -1,0 +1,34 @@
+Agile Principles
+==============
+1) Customer satisfaction
+2)Welcoming changes
+3)Deliver working software frequently
+4)Business people and developers must work together daily
+5)Build projects around motivated individuals and provide complete support for them to work and trust them to get the job done
+6)face to face conversation for conveying information correctly
+7)Working s/w is the primary mesaure of progress(failure rate)
+8)Agile process promote sustainable development(monitoring & alerting)
+9)Continuous attention to technical excellence and good design enchances agility(code review -> testing)
+10)simplicity -- the art of maximing the amount of work not done (use of cloud & existing services)
+11)The best architecture, requirements
+12)At regular intervals, the team reflects how to more effective(corecting mistakes happend on last sprint and take care in next sprint)
+
+Scrum principles:
+==================
+1) empirical process control - improving with experience
+2) self- organization (decision on expertise)
+3) collaboration
+4) value-based prioritization
+5) time-boxing
+6) Iterative development
+
+Uses:
+------
+1)faster feedback and adjustement
+2)enchanced quality(complex projects breaks down to manageable chunks)
+3)Improved collaboration and ownership
+4)Better productivity
+5)customer satisfaction
+6)transparency & communication(standups....)
+7)risk mitigation(regualr standups & small chunks)
+8)Increased value

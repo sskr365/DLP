@@ -1,10 +1,11 @@
 
 =============================================
-9:30 - 12:00 --> Topics
+9:00 - 11:30 --> Topics
 
 12 - 9 (office)
-  Java & Python
   Devops Videos
+  Java & Python
+  
 
 9:00 - 11:30  --> Kubernetes
 

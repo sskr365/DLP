@@ -1,0 +1,56 @@
+---
+# tasks file for apache
+- name: block for copying {{ configfile }} to {{ ENV }}_{{ instance }} server
+  block:
+  - name: backup of {{ ENV }} {{ configfile }}
+    shell:
+      cp -p /etc/httpd/conf/httpd.conf  /etc/httpd/backup/httpd.conf-`date +%Y.%m.%d.%H.%M.%S`
+  - name: copying {{ configfile }} file to {{ ENV }}_{{ instance }} target location
+    copy:
+      src: "{{ propertyfiles_src }}/{{ ENV }}/{{ app }}/httpd.conf"
+      dest: /etc/httpd/conf/httpd.conf
+      remote_src: no
+      owner: apache
+      group: apache
+      mode: 0755
+  tags: httpd.conf
+
+- name:  block for copying {{ configfile }} to {{ ENV }}_{{ instance }} server
+  block:
+  - name: backup of {{ ENV }} {{ configfile }}
+    shell:
+      cp -p /etc/httpd/conf.d/proxy_ajp.conf  /etc/httpd/backup/proxy_ajp.conf-`date +%Y.%m.%d.%H.%M.%S`
+  - name: copying proxy_ajp.conf file to {{ ENV }} target location
+    copy:
+      src: "{{ propertyfiles_src }}/{{ ENV }}/{{ app }}/proxy_ajp.conf"
+      dest: /etc/httpd/conf.d/proxy_ajp.conf
+      remote_src: no
+      owner: apache
+      group: apache
+      mode: 0755
+  tags: proxy_ajp.conf
+
+- name: block for copying {{ configfile }} to {{ ENV }}_{{ instance }} server
+  block:
+  - name: backup of {{ ENV }} {{ configfile }}
+    shell:
+      cp -p /etc/httpd/conf.d/ssl.conf  /etc/httpd/backup/ssl.conf-`date +%Y.%m.%d.%H.%M.%S`
+  - name: copying ssl.conf  file to {{ ENV }} target location
+    copy:
+      src: "{{ propertyfiles_src }}/{{ ENV }}/{{ app }}/ssl.conf"
+      dest: /etc/httpd/conf.d/ssl.conf
+      remote_src: no
+      owner: apache
+      group: apache
+      mode: 0755
+  tags: ssl.conf
+
+- name: block for restarting httpd services
+  block:
+  - name: Restarting the httpd services
+    service:
+      name: httpd
+      state: restarted
+  tags:
+    - "yes"
+...

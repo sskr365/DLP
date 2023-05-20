@@ -1,0 +1,24 @@
+---
+# tasks file for liferay
+- name: block for copying {{ configfile }} to {{ ENV }}_{{ instance }} server
+  block:
+  - name: backup of {{ configfile }}
+    shell:
+      cp -p /opt/cloudhost/liferay-tomcat/liferay_instance{{ num }}/portal-ext.properties  /opt/cloudhost/liferay-tomcat/configfiles-backup/{{ instance }}/portal-ext.properties-`date +%Y.%m.%d.%H.%M.%S`
+
+  - name: copying {{ configfile }} file to {{ ENV }}_{{ instance }} target location
+    copy:
+      src: "{{ propertyfiles_src }}/{{ ENV }}/{{ app }}/liferay{{ nodeNum }}/portal-ext.properties"
+      dest: /opt/cloudhost/liferay-tomcat/liferay_instance{{ num }}/portal-ext.properties
+      remote_src: no
+      owner: liferay
+      group: liferaygrp
+      mode: 0755
+  tags: portal-ext.properties
+  
+- name: block for restarting {{ instance }} services
+  block:
+  - name: Starting the {{ instance }} services
+    command: sh /opt/cloudhost/liferay-tomcat/liferay_instance{{ num }}/{{ TomcatVersion }}/bin/liferay_restart.sh
+  tags:
+    - "yes"
