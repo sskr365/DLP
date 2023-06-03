@@ -1,16 +1,15 @@
-
+Target by Septmber-29-2023 (85 days)
 =============================================
-8:30 - 10:30 --> Topic: Jenkins
-11:00 - 12:00 --> Java
+8:30 - 10:30 --> Topics
+11:00 - 12:00 --> Devops Videos
 
 12 - 9 (office)
   Devops Videos
   Java & Python
   
 
-9:00 - 11:00  --> Kubernetes
-11:15 - 12:15 --> Python
-
+9:30 - 11:30 --> Kubernetes
+11:45 - 12:45  --> Languages (java/python/shell)
 
 ===================================================
 1) DMP [git, jenkins]
@@ -41,7 +40,7 @@
 26) Nexus
 
 ===================================================
-Kubernetes time tabel: 50 Days + 10 days - JUN-23(Friday)
+Kubernetes time tabel: 50 Days + 10 days - AUG-27-2023(Friday)
 ---------------------
 Day 02 – Docker Architecture - 2 Days
 Day 03: Docker Containers and Images | Docker Commands - 2 Days

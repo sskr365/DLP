@@ -125,7 +125,7 @@
   - name: copying {{ configfile }} file to {{ ENV }}_{{ instance }} target location
     copy:
       src: "{{ propertyfiles_src }}/{{ ENV }}/{{ app }}/{{ instance }}/ComponentBlacklistConfiguration"
-      dest: /opt/cloudhost/liferay-tomcat/liferay_instance{{ num }}/osgi/configs/ComponentBlacklistConfiguration
+      dest: /opt/cloudhost/liferay-tomcat/liferay_instance{{ num }}/osgi/configs/com.liferay.portal.component.blacklist.internal.ComponentBlacklistConfiguration.config
       remote_src: no
       owner: liferay
       group: liferaygrp

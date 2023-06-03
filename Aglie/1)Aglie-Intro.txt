@@ -1,6 +1,6 @@
 Agile Principles
 ==============
-1) Customer satisfaction
+1)Customer satisfaction
 2)Welcoming changes
 3)Deliver working software frequently
 4)Business people and developers must work together daily
@@ -32,3 +32,50 @@ Uses:
 6)transparency & communication(standups....)
 7)risk mitigation(regualr standups & small chunks)
 8)Increased value
+
+
+Scrum Phases:
+==============
+1)Initiation - defining project goals, assembling the team, and setting up rnvironmnet for the project development
+2)Planning - the teams creates a product backlog, which is a list of tasks done in project and plan for the first sprint(ex - to lanuch servers we use terraform)
+3)Implementation - the team works on the tasks in the sprint backlog, every day there is daily scrum meeting to discuss progress and issues.
+4)Review - At the end of each sprint, team holds sprint review to present the completed work to the stakeholderds
+5)Retrospective - final phase of each sprint, where the team reflects on what went well and what could be improved in next sprint.
+
+
+Scrum Roles & organizations:
+===========================
+1) product ownership
+2) scrum master
+3) Development Team
+
+Scrum events:
+=============
+1) sprint (2 weeks)
+2) sprint Planning
+3) daily scrum (stand-up)
+4)sprint review
+5)sprint retrospective
+
+Scrum Artifacts:
+==================
+1)product backlog
+2)sprint backlog -  subset of product backlog
+3)product increment - the sum of all product backlogs in sprint
+
+Scrum values:
+==============
+1)commitment
+2)courage
+3)focus
+4)openess
+5)respect
+
+Daily Tasks:
+===========
+1)procut backlog - features, functions, requirements, enchancements &fixes 
+2)sprint planning -  dicusiion on product backlog, no of sprints required
+3)sprint backlog - list out topics in sprint to be completed
+4)daily scrum
+5)works on task - tasks discussed in sprint backlog using CICD
+6) 
