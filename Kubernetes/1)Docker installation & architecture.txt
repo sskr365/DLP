@@ -44,7 +44,7 @@ DOCKER ARCHITECTURE -02
 =======================
 
 We have soa(service oriented architecture) before microservices.
-Monolithic application --> everything like packages, dependencies & tools packed into single application . It is ingle point of failure
+Monolithic application --> everything like packages, dependencies & tools packed into single application . It is single point of failure
 Microservices -> independent each other, for example for ecommerece websites login page, cart page, clothes , shoes, mobiles are developed independently to each other and that too in different languages.
 In microservices monitoring is esay and can fix the issue quickly, easy to scale, better fault isolated  
 

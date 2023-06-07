@@ -142,6 +142,9 @@ curl localhost:9200/_cat/master --noproxy "*"
 check settings of Elasticsearch cluster
 curl localhost:9200/_settings --noproxy "*"
 
+checking of elasticsearch version:
+curl -X GET http://localhost:9200/ --noproxy "*"
+
 
 
 =========================================================================
