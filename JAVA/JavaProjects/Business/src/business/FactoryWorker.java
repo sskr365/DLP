@@ -1,4 +1,4 @@
 package business;
 
-class FactoryWorker {
+ class FactoryWorker {
 }

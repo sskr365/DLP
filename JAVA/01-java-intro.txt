@@ -12,5 +12,9 @@ jshell env is called repl(read eval print loop)
 In java methods are functions inside a class
 object is blueprint of a class
 
-----calss 11 ------
+----calss ------
 
+Java classes can start with underscore & lower cases(not recommebeded)but not allowed with symbols, numbers & special characters
+class is a key word to create class of java
+public is key word for visibility of class, by default class is package protected
+java.lang is default package
