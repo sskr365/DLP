@@ -1,5 +1,5 @@
 import business.Company;
 
-class NewsAgency {
+ class NewsAgency {
     Company company;
 }

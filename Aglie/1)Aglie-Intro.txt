@@ -78,4 +78,13 @@ Daily Tasks:
 3)sprint backlog - list out topics in sprint to be completed
 4)daily scrum
 5)works on task - tasks discussed in sprint backlog using CICD
-6) 
+6)Sprint Review - Sprint review meeting at the end of sprint
+7)Sprint retrospective - after sprint review, team holds retrospective to reflect on their performance
+8)Product Increment - 
+
+
+
+Kanban boards:
+============
+kanban is lean method to manage and improve work across human systems. Its visualize work
+Kanban is continuos improvement no tasks, roles , sprints where as in scrum we have all those . Kanaban is visulazation
