@@ -145,6 +145,10 @@ curl localhost:9200/_settings --noproxy "*"
 checking of elasticsearch version:
 curl -X GET http://localhost:9200/ --noproxy "*"
 
+to clear index:
+ curl -X DELETE http://localhost:9200/liferay-20115
+  curl -X DELETE http://localhost:9200/liferay-0
+
 
 
 =========================================================================

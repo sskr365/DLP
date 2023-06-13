@@ -1,4 +1,14 @@
 1)docker search centos -> it will search all centos images of docker form dockerhub
 2)docker pull ubuntu -> it will pull images(images are in layers)
 3)docker images -> shows all present images
-4)
+4)doker run -> create container out of image
+
+Docker engine contains --> docker daemon(server), rest api, cli(client)
+all docker commands it will communiocate to docker daemon through rest-api to commmunicate to other services
+
+Containers are almost similar to linux becayse it uses namespaces(isolating s/m components like cpu, processes, files..) and cgroups(limiting resource allocation like cpu, ram)
+
+different types of containetr run time in market -> 1)docker, 2)lxc, 3)runc, 4)crio, 5)containerd, redhat has podman which is containerized platform
+All containerized follow standarized system OCI(open conatiners initiative)
+
+Day3 - 9 mnts
