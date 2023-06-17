@@ -6,3 +6,12 @@ Apache installations:
 	YUM based
 	RPM based
 	Source code/ Tar ball based
+
+to enable apache httppd load balancer for tomcats:
+==================================================
+IN path " /etc/httpd/conf.d" in file "proxy_ajp.conf" as mentioned " AuthUserFile /etc/httpd/.htpasswd " create it .
+
+For liferay servers to show total no of nodes in a cluster, neeed to change TCP port no below location for given file:
+=================================================================================================================
+/opt/cloudhost/liferay-tomcat/liferay_instance1/tomcat-8.0.32/webapps/ROOT/WEB-INF/classes/cluster-ehcache
+file - jdbc_ping_config.xml --><TCP bind_port="7800"  suoild be different for different instances
