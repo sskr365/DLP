@@ -26,4 +26,10 @@ variables starts with lowecase and follows camel type
 constants have all capital letters
 constants use "final" key word
 
-Array is a collection of other data types
+Array is a collection of same data types
+
+
+Method:
+------------
+method is a block of code where works get done, it can take 0 or more inputs and returns 0 or 1 output.
+method is function which is part of class
