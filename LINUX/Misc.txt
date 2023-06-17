@@ -9,8 +9,9 @@ topics:
 7)Adding ports to Firewall
 8)Linux check user password expiration using chage & set password never expire
 9)Delete user on RHEL 8 
-10)To check files which dows not belong to specific user
+10)To check files which does not belong to specific user
 11) grep command for multiple word check
+12)create file with some old date
 
 
 1) To check no of cpus:
@@ -68,7 +69,7 @@ reboot / shutdown -r now
   -----------------------
 to check ports status:
 	netstat -tulpn
-firewall-cmd --permanent --zone=drop --add-port=9200/tcp ;firewall-cmd --reload
+firewall-cmd --permanent --zone=drop --add-port=7801/tcp ;firewall-cmd --reload
 firewall-cmd --list-ports
 
 To Add multiple ports:
@@ -96,6 +97,10 @@ find /opt/cloudhost/liferay-tomcat/Data_Folder/document_library -type f -not -us
 
 11) grep command for multiple word check
  cat portal-ext.properties | grep -e kafka.consumer.enabled -e prp.polling.translation.job.allowed -e prp.content.notification.job.allowed -e upp.notification.enabled -e prp.tibco.client.enable -e saba.indexing.scheduler.allowed
+
+===============================================================================
+12)command to create file with some old date
+touch -t 202201011030.00 example.txt
 
 
 
