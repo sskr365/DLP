@@ -1,0 +1,2 @@
+jira is a project management tool by all kinds of teams to monitor an dprogress work
+jira has cloud, server & data center  deployment types

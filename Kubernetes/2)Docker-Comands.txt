@@ -2,13 +2,43 @@
 2)docker pull ubuntu -> it will pull images(images are in layers)
 3)docker images -> shows all present images
 4)doker run -> create container out of image
+5)docker image ls --> to check images
+6)docker image rm ubuntu  --> to remove image
+7)doker history <image_id> --> shows history image
+8)docker tag centos centos123:v1  --> to tag docker images , we can chage version and name of image
 
 Docker engine contains --> docker daemon(server), rest api, cli(client)
 all docker commands it will communiocate to docker daemon through rest-api to commmunicate to other services
 
-Containers are almost similar to linux becayse it uses namespaces(isolating s/m components like cpu, processes, files..) and cgroups(limiting resource allocation like cpu, ram)
+Containers are almost similar to linux becayse it uses namespaces(isolating s/m components like cpu, processes,users, files..) and cgroups(limiting resource allocation like cpu, ram)
 
-different types of containetr run time in market -> 1)docker, 2)lxc, 3)runc, 4)crio, 5)containerd, redhat has podman which is containerized platform
+different types of containetr(containerd component in docker) run time in market -> 1)docker, 2)lxc, 3)runc, 4)crio, 5)containerd, redhat has podman which is containerized platform
 All containerized follow standarized system OCI(open conatiners initiative)
+docker alternative is podman which is enchancement of docker by redhat
 
-Day3 - 9 mnts
+Docker images can be created in 2 ways 
+1)commit --> can be installed packages and save
+2)dockerfile ---> instructions how image should be, each instruction is layer
+
+
+Instructions of docker file:
+===========================
+FROM -> dockerfile starts with FROM: base image
+LABEL -> key value pair
+MAINTAINER -> owner of file
+RUN -> to execute commands
+EXPOSE -> ports
+ENV -> environmnet variables, but in k8s we use config-maps
+ADD -> to copy files from outside like urls , tar files
+COPY -> to copy locally
+USER -> 
+CMD -> standard commands or argumnets to entrypoint
+ENTRYPOINT -> standard command to run image
+
+To carte docker image out of docker file:
+1)docker build . ( if we use standared name dockerfile, recommended and use separate folder for each project)
+2)docker build . -f my_dockerfile(other than standard name)
+
+
+DAY3: 32:10
+

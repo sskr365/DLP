@@ -1,0 +1,117 @@
+topics:
+========
+1)To check no of cpus & To check RAM
+2)BCKUP of files using function under any user .bashrc
+3)To copy folders/files between servers whic are in different jump server regions:
+4)How to Search Text in Multiple Files in Linux
+5)How to Delete Files Older than 30 days in Linux 
+6)How to disable selinux
+7)Adding ports to Firewall
+8)Linux check user password expiration using chage & set password never expire
+9)Delete user on RHEL 8 
+10)To check files which does not belong to specific user
+11) grep command for multiple word check
+12)create file with some old date
+13)To check cert detaild in backend
+
+
+1) To check no of cpus:
+----
+# lscpu | grep CPU
+
+To check RAM:
+----
+#dmidecode --type 17 
+ dmidecode --type 17 | less 
+ dmidecode --type 17 | grep  Size:.*MB
+
+To install rpm in linux , command is -->  # rpm -ivh ****.rpm
+========================================================================
+2) BCKUP of files using function under any user .bashrc
+--------------------------------------------------------
+backup_file() {
+    if [ -f "$1" ]; then
+        backup_filename="$1.$(date +%Y-%m-%d_%H:%M:%S)"
+        cp "$1" "$backup_filename"
+        echo "Backup created: $backup_filename"
+    else
+        echo "File not found: $1"
+    fi
+}
+
+====================================================================
+3) To copy folders/files between servers whic are in different jump server regions:
+
+scp -o "ProxyJump hegder@16.231.22.192" 20115-stg.tar.gz hegderaj@d2l00220g.dc02.its.hpecorp.net:/opt/cloudhost/liferay-tomcat/Data_Folder/document_library
+
+
+scp test.log it1:/tmp
+==========================================================================
+4) How to Search Text in Multiple Files in Linux
+   -------------------------------------------
+
+grep -irwn 'searched-word' '/directory'  --> i casesensitive,r recursive,w whole word only,n line number
+grep -ir 'word1|word2|word3' '/directory' --> multiple word search
+=================================================================
+5) How to Delete Files Older than 30 days in Linux 
+  ------------------------------------------
+
+find /var/log -name "*.log" -type f -mtime +30 --> to list specific files which are  30 days older
+find /var/log -name "*.log" -type f -mtime +30 -delete --> to delete specific type of files which are 30                                                           days older
+Delete Old Directory Recursively
+
+find /var/log -type d -mtime +90 --> The -delete option may fail if the directory is not empty. In that case, we will use the Linux rm command with find to accomplish the deletion.
+find /var/log -type d -mtime +30 -exec rm -rf {} \; 
+====================================================================================
+6) How to disable selinux
+  ------------
+vi /etc/selinux/config
+	SELINUX=disabled
+reboot / shutdown -r now
+============================================================
+7) Adding ports to Firewall:
+  -----------------------
+to check ports status:
+	netstat -tulpn
+firewall-cmd --permanent --zone=drop --add-port=8009/tcp ;firewall-cmd --reload
+firewall-cmd --list-ports
+
+To Add multiple ports:
+---------------
+# firewall-cmd --permanent --zone=drop --add-port={22/TCP,8109/tcp,443/tcp,1154/tcp,80/tcp,8080/tcp,8443/tcp,22527/tcp,8983/tcp,1526/tcp,4010/tcp,4123/tcp,8543/tcp,8444/tcp,25/tcp,3621/tcp,5693/tcp,4542/tcp,46689/tcp,3483/tcp,514/tcp,3355/tcp,8005/tcp,34469/tcp,4999/tcp,9000/tcp,46350/tcp}
+=====================================================================
+8) Linux check user password expiration using chage & set password never expire
+---------------------
+to check status -> chage -l <username>
+to make password never expire -> passwd -x -1 rehat-user (or) chage -M -1 redhat-user
+
+
+=====================================================
+9) Delete user on RHEL 8
+----------------
+
+userdel -f -r redhat-user  --> -r -> instructs the userdel command to remove also user’s home directory:
+			-f -> to force the user removal in case the user is logged:
+
+==================================================================================
+10)To check files which does not belong to specific user
+
+find /opt/cloudhost/liferay-tomcat/Data_Folder/document_library -type f -not -user liferay -exec ls -l {} \;
+============================================================================
+
+11) grep command for multiple word check
+ cat portal-ext.properties | grep -e kafka.consumer.enabled -e prp.polling.translation.job.allowed -e prp.content.notification.job.allowed -e upp.notification.enabled -e prp.tibco.client.enable -e saba.indexing.scheduler.allowed
+
+===============================================================================
+12)command to create file with some old date
+touch -t 202201011030.00 example.txt
+===============================================
+13)To check cert details in backend
+openssl x509 -in server.crt -text
+=========================================================
+
+
+
+
+
+

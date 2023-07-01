@@ -1,0 +1,39 @@
+terminilogy:
+============
+1. finacial year(fy) -> apr 1st to mar 31st
+2. assessment year (ay) -> next finacial year
+3. assessee -> one who is paying tax
+4. previous year(py) same as fy(finacial year)
+5. residential status -> resident, non-resident, resident but not ordinary(3 years)
+6. Gross total income -> income before exemptions & deductuions
+7. deductuions -> money which is spent and invest (interest on home loan payment 24(e), home loan       principal amount 80(c)
+8. exemptions -> connected to income ex: hra in slary which doest come under tax and also agriculture    income
+9. taxable income -> gross total income - (exemptions + deductuions)= taxable income
+10. tds(tax deducted at source) 
+11. citizens -> ordinary - <60 years, senior - 60 to 80. super senior - 80 & above
+
+
+4% -> cess is tax on tax we pay for taxable income
+surcharge ->similar as cess,  income exceeds 50L below 1 cr 10%, 1-2 cr 15%, 2-5cr 25%, 5+cr 37%.
+
+different taxed income:(exceptions tax)
+----------------------
+1) property 
+
+  24 months >> (ltgc) 20% with indexation
+  << 24 months(stgc) as prt it slabs without indexation
+2) debts mutual funds
+	>> 36 (ltgc) 20% with indexation
+	<< 36(stgc)  as prt it slabs without indexation
+3)equity mutual funds
+	>12 months upto 1 lakh no tax, after 1 lakh 10%
+	<12 months flat 15%
+4)shares
+	securities transaction tax(stt0 tax paid during purchase via dmat account
+	stt paid -> >12 months upto 1 lakh no tax, after 1 lakh 10%
+		    <12 months flat 15%
+	stt not paid -> >12 months 20%
+		        <12 months as per it slabs
+5)fixed maturity plans(fmps):
+	>> 36 (ltgc) 20%
+	<< 36(stgc)  as prt it slabs

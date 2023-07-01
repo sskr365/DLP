@@ -14,7 +14,7 @@ object is blueprint of a class
 
 ----calss ------
 
-Java classes can start with underscore & lower cases(not recommebeded)but not allowed with symbols, numbers & special characters
+Java classes can start with underscore & lower cases(not recommended)but not allowed with symbols, numbers & special characters
 class is a key word to create class of java
 public is key word for visibility of class, by default class is package protected
 java.lang is default package
@@ -33,3 +33,10 @@ Method:
 ------------
 method is a block of code where works get done, it can take 0 or more inputs and returns 0 or 1 output.
 method is function which is part of class
+
+In java everything should be under the class only
+
+public void sayHello() { }  --> this method inputs is zero and returns nothing(void), printing message on screen is not output.
+
+methods always have return type liks void(nothing), int or any other types.
+methods should end with () and standard naming convention is always startswith lowercase letter and camel type , numbers can be used in between method name not at start of method name.

@@ -1,0 +1,322 @@
+Create user:
+----------
+useradd elasticsearch
+chage -M -1 elasticsearch  --> to make password never expire
+chage -l elasticsearch
+
+Installing elasticserach in different ways:
+===========================================
+
+install Elasticsearch with TAR
+-------------------------------
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.0.tar.gz
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.0.tar.gz.sha512
+shasum -a 512 -c elasticsearch-6.1.0.tar.gz.sha512
+                         Error:  -bash: shasum: command not found
+           Execute command: yum install perl-Digest-SHA -y 
+
+Extract elasticsearch-6.1.0.tar.gz file
+      tar -xvzf elasticsearch-6.1.0.tar.gz
+
+Install java
+------------
+sudo yum install java-1.8.0-openjdk-devel
+vim ~/.bashrc
+	export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
+	export PATH=$JAVA_HOME/bin:$PATH
+source ~/.bashrc
+echo $JAVA_HOME
+
+
+To start elasticsearch service in backend 
+    elasticsearch-6.1.0/bin/elasticsearch &
+
+If issue while starting elasticserach like below:
+--------------------------------------------
+Error: Elasticsearch: Max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+Solution: 
+1)sysctl -w vm.max_map_count=262144
+	 the setting will only last for the duration of the session. If the host reboots, the setting will be reset to the original value.
+
+2) If you want to set this permanently, you need to edit /etc/sysctl.conf and set "vm.max_map_count = 262144".
+
+When the host reboots, you can verify that the setting is still correct by running sysctl vm.max_map_count
+
+
+vm.max_map_count:  defination & uses:::
+==================
+operating systems that specifies the maximum number of memory map areas a process can create. Memory mapping is a technique used by programs to access files or devices as if they were parts of the program's memory, allowing for efficient reading and writing of large data sets.
+
+In Linux, the vm.max_map_count parameter limits the number of memory map areas a process can create system-wide. When a process exceeds this limit, it may result in errors or failures, such as "Too many open files" or "Out of memory" errors.
+
+Install Elasticsearch with RPM
+-----------------------------------
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.0.rpm
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.1.0.rpm.sha512
+shasum -a 512 -c elasticsearch-6.1.0.rpm.sha512 
+sudo rpm --install elasticsearch-6.1.0.rpm	
+Running Elasticsearch with system 
+To configure Elasticsearch to start automatically when the system boots up, run the following commands:
+sudo /bin/systemctl daemon-reload
+sudo /bin/systemctl enable elasticsearch.service
+
+Create following directories:
+------------------------
+ mkdir -p /opt/cloudhost/elasticsearch/data/elasticsearch
+ mkdir -p /opt/cloudhost/elasticsearch/log/elasticsearch
+
+Elastic search configurations: (p1lg102073)
+--------------------------------------
+1. In [Elasticsearch Home]/config/elasticsearch.yml  file update below properties:
+•	cluster.name: LiferayElasticsearchCluster
+•	node.name: p1lg102073.dc01.its.hpecorp.net
+•	path.data: /opt/cloudhost/elasticsearch/data/elasticsearch
+•	path.logs: /opt/cloudhost/elasticsearch/log/elasticsearch
+•	network.host: 0.0.0.0
+•	bootstrap.system_call_filter: false
+•	discovery.zen.ping.unicast.hosts: ["p1l00474g.dc01.its.hpecorp.net", "p1l00475g.dc01.its.hpecorp.net", "p1lg102073.dc01.its.hpecorp.net"]
+•	discovery.zen.minimum_master_nodes: 2
+•	node.data: true (in all three nodes)
+•	node.master: true   ( in all three nodes)
+
+
+
+2. In Jvm.options file update the below properties:
+
+-Xms12g
+-Xmx12g
+Comment below:
+----------------------
+#-XX:HeapDumpPath=/var/lib/elasticsearch
+#-XX:+HeapDumpOnOutOfMemoryError
+
+3. Change permissions and modes:
+
+4. Add port nos to firewall service
+
+   firewall-cmd --permanent --zone=drop --add-port=9200/tcp ;firewall-cmd --reload
+   firewall-cmd --permanent --zone=drop --add-port=9300/tcp ;firewall-cmd --reload
+
+Make sure permissions should be 775 & elasticsearch:elasticsearch
+
+5. Start the elasticserach (p1lg102073)
+
+Check status of Elastic search service: 
+------------------------------------------ 
+
+sudo systemctl status elasticsearch.service
+
+These commands provide no feedback as to whether Elasticsearch was started successfully or not. Instead, this information will be written in the log files located in /var/log/elasticsearch/.
+
+By default, the Elasticsearch service doesn’t log information in the systemd journal. To enable journalctl logging, the “--quiet” option must be removed from the ExecStart command line in the elasticsearch.service file.
+
+When systemd logging is enabled, the logging information are available using the journalctl commands:
+
+
+To tail the journal:
+sudo journalctl -f
+To list journal entries for the elasticsearch service:
+sudo journalctl --unit elasticsearch
+To list journal entries for the elasticsearch service starting from a given time:
+sudo journalctl --unit elasticsearch --since  "2020-12-02 18:17:16"
+
+
+
+6. Elasticsearch api commands (Compare results in all three nodes)
+ 
+Check indices:
+curl 'localhost:9200/_cat/indices?v' --noproxy "*"
+ 
+Check nodes:
+curl localhost:9200/_cat/nodes --noproxy "*"
+
+ 
+Check health:
+curl localhost:9200/_cat/health --noproxy "*"
+
+ 
+Check master:
+curl localhost:9200/_cat/master --noproxy "*"
+
+
+check settings of Elasticsearch cluster
+curl localhost:9200/_settings --noproxy "*"
+
+checking of elasticsearch version:
+curl -X GET http://localhost:9200/ --noproxy "*"
+
+to clear index:
+ curl -X DELETE http://localhost:9200/liferay-20115
+  curl -X DELETE http://localhost:9200/liferay-0
+
+
+
+=========================================================================
+==========================================================================
+
+Elasticsearch as systemd service
+----------------------------------
+to craete elasticsearch.pid for elasticsearch in /var/run/elasticsearch
+  mkdir /var/run/elasticsearch and change ownership to elasticsearchrch
+  add entry in elasticsearch.yml
+       pidfile: /var/run/elasticsearch/elasticsearch.pid
+
+To create sysytemd service for elasticserach:
+-------------------------------------------
+1)  create  /etc/systemd/system/elasticsearch.service
+
+				[Unit]
+				Description=Elasticsearch
+				Documentation=http://www.elastic.co
+				Wants=network-online.target
+				After=network-online.target
+
+				[Service]
+				RuntimeDirectory=elasticsearch
+				Environment=ES_HOME=/opt/cloudhost/elasticsearch-6.1.0
+				Environment=ES_PATH_CONF=/opt/cloudhost/elasticsearch-6.1.0/config
+				Environment=PID_DIR=/var/run/elasticsearch
+				# Environment=PID_DIR=/opt/cloudhost/elasticsearch/pid  //create pid/elasticsearch.pid  under this path
+
+
+				WorkingDirectory=/opt/cloudhost/elasticsearch-6.1.0
+
+				User=elasticsearch
+				Group=elasticsearch
+
+				ExecStart=/opt/cloudhost/elasticsearch-6.1.0/bin/elasticsearch -p ${PID_DIR}/elasticsearch.pid
+
+				# StandardOutput is configured to redirect to journalctl since
+				# some error messages may be logged in standard output before
+				# elasticsearch logging system is initialized. Elasticsearch
+				# stores its logs in /var/log/elasticsearch and does not use
+				# journalctl by default. If you also want to enable journalctl
+				# logging, you can simply remove the "quiet" option from ExecStart.
+				StandardOutput=journal
+				StandardError=inherit
+
+				# Specifies the maximum file descriptor number that can be opened by this process
+				LimitNOFILE=65536
+
+				# Specifies the maximum number of processes
+				LimitNPROC=4096
+
+				# Specifies the maximum size of virtual memory
+				LimitAS=infinity
+
+				# Specifies the maximum file size
+				LimitFSIZE=infinity
+
+				# Disable timeout logic and wait until process is stopped
+				TimeoutStopSec=0
+
+				# SIGTERM signal is used to stop the Java process
+				KillSignal=SIGTERM
+
+				# Send the signal only to the JVM rather than its control group
+				KillMode=process
+
+				# Java process is never killed
+				SendSIGKILL=no
+
+				# When a JVM receives a SIGTERM signal it exits with code 143
+				SuccessExitStatus=143
+
+				[Install]
+				WantedBy=multi-user.target
+
+				# Built for distribution-6.1.0 (distribution)
+
+
+
+2)sudo systemctl daemon-reload
+3)sudo systemctl enable elasticsearch.service
+4)sudo systemctl start elasticsearch.service
+
+
+
+===============================================
+In case systemd service failed to start elastic service, final step to follow
+-------------------------------
+
+Create file elasticsearch under /etc/sysconfig and add below content:
+--------------------------------------------------------------------
+permissions should be 666
+Add below propert in elasticsearch service file:
+	EnvironmentFile=-/etc/sysconfig/elasticsearch
+	
+	
+	Go to /etc/sysconfig/elasticsearch
+Add ES_JAVA_OPTS="-Djna.tmpdir=/var/lib/elasticsearch/tmp".
+
+(For newer Elasticsearch, use Djava.io.tmpdir instead of Djna.tmpdir)
+
+Start Elasticsearch using systemctl start elasticsearch or service start elasticsearch.
+You can see now tmp folder created inside /var/lib/elasticsearch/.
+This folder should have execute permission for elasticsearch user
+Check the permission with of /var/lib/elasticsearch
+Make sure the permission file have something like below permission
+
+dr-xr-xr-x root          root          /
+drwxr-xr-x root          root          var
+drwxr-xr-x root          root          lib
+drwxr-x--- elasticsearch elasticsearch elasticsearch
+
+
+/etc/sysconfig/elasticsearch
+------------
+
+################################
+# Elasticsearch
+################################
+
+# Elasticsearch home directory
+#ES_HOME=/usr/share/elasticsearch
+
+# Elasticsearch Java path
+#JAVA_HOME=
+
+# Elasticsearch configuration directory
+ES_PATH_CONF=/opt/cloudhost/elasticsearch-6.1.0/config
+
+
+ES_JAVA_OPTS="-Djava.io.tmpdir=/var/lib/elasticsearch/tmp"
+
+# Elasticsearch PID directory
+#PID_DIR=/var/run/elasticsearch
+
+# Additional Java OPTS
+#ES_JAVA_OPTS=
+
+# Configure restart on package upgrade (true, every other setting will lead to not restarting)
+#RESTART_ON_UPGRADE=true
+
+################################
+# Elasticsearch service
+################################
+
+# SysV init.d
+#
+# The number of seconds to wait before checking if Elasticsearch started successfully as a daemon proce
+ES_STARTUP_SLEEP_TIME=5
+
+################################
+# System properties
+################################
+
+# Specifies the maximum file descriptor number that can be opened by this process
+# When using Systemd, this setting is ignored and the LimitNOFILE defined in
+# /usr/lib/systemd/system/elasticsearch.service takes precedence
+#MAX_OPEN_FILES=65536
+
+# The maximum number of bytes of memory that may be locked into RAM
+# Set to "unlimited" if you use the 'bootstrap.memory_lock: true' option
+# in elasticsearch.yml.
+# When using systemd, LimitMEMLOCK must be set in a unit file such as
+# /etc/systemd/system/elasticsearch.service.d/override.conf.
+#MAX_LOCKED_MEMORY=unlimited
+
+# Maximum number of VMA (Virtual Memory Areas) a process can own
+# When using Systemd, this setting is ignored and the 'vm.max_map_count'
+# property is set at boot time in /usr/lib/sysctl.d/elasticsearch.conf
+#MAX_MAP_COUNT=262144                                                                

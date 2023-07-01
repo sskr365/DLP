@@ -5,3 +5,7 @@ vim ~/.bashrc
 source ~/.bashrc
 echo $JAVA_HOME
 
+
+
+/opt/cloudhost/jdk1.8.0_181/bin
+

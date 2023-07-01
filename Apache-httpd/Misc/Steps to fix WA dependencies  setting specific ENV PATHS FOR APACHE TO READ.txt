@@ -1,0 +1,59 @@
+=> Below steps need to fix the  error  : <Cannot load /opt/ca/siteminder12/webagent/bin/libmod_sm24.so into server: libsmerrlog.so: cannot open shared object file: No such file or directory>
+========================================
+
+
+
+
+-> source the below env WA specific varriables in /etc/sysconfig/httpd
+====================================================================
+
+Before adding this file in /etc/sysconfig/httpd source the ca_wa_env.sh file locayed in "/opt/cloudhost/CA/webagent" 
+   source ./ca_wa_env.sh
+Check the values in env variables:
+  echo $NETE_WA_ROOT, echo $NETE_WA_PATH ...........
+
+NETE_WA_ROOT=/opt/ca/siteminder12/webagent  ( Actual path in PRP: /opt/cloudhost/CA/webagent)
+NETE_WA_PATH=/opt/ca/siteminder12/webagent/bin
+CAPKIHOME=/opt/ca/siteminder12/webagent/CAPKI
+LD_LIBRARY_PATH=/opt/ca/siteminder12/webagent/bin:/opt/ca/siteminder12/webagent/bin/thirdparty:
+PATH=/opt/ca/siteminder12/webagent/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+-> Also source above variables in /etc/bashrc
+  This is for the user probably root user when logs in :
+
+
+-> Add below lines in /etc/systemd/system/httpd.service.d/override.conf  //Note: Create the httpd.service.d <dir> and the file "override.conf" in it.
+=======================================================================
+
+[Service]
+EnvironmentFile=/etc/sysconfig/httpd
+
+-> Ensure Include conf.modules.d is enabled in httpd.conf
+
+ The below line as uncommented in file /etc/httpd/conf.modules.d/00-mpm.conf
+ LoadModule mpm_event_module modules/mod_mpm_event.so
+	
+
+
+
+LLAWP /etc/httpd/conf/WebAgent.conf -APACHE24
+
+=> Ensure SELinux is disabled
+==============================
+Inside file /etc/selinux/config
+
+SELINUX=disabled
+
+After the change, server needs reboot
+
+=======================================================
+========================================================
+
+After fixing above steps and if you see below error while starting apache:
+
+	Apr 18 10:57:08 s1lg102513 httpd[61487]: Invalid command 'SSLPassPhraseDialog', perhaps misspelled or defined by a module not included in the server 		configuration
+
+	Invalid command 'SSLPassPhraseDialog', perhaps misspelled or defined by a module not included in the server configuration
+
+Rename original ssl.conf file to ssl.conf_bkp in /etc/httpd/conf.d  location or install " yum install mod_ssl"
+

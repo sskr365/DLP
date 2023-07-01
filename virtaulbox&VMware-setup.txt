@@ -19,3 +19,14 @@ New virtual m/c --> installer( download from ubuntu official page/ redhat develo
 	https://developers.redhat.com/products/rhel/download
 			(sskrdevop21@gmail.com, abcd@1234)
 	redhat login - sskrdevops23
+
+
+Rocky linux on VMware:
+======================
+download rocky 9.0 minimal
+vmware player
+new vm -> installer disk image file -> linux -> srorage & ram -> network: bridge -> 
+
+to install gui for rocky linus :
+
+# dnf groupinstall "Server with GUI" --skip-broken 
